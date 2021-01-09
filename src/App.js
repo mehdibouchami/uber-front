@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
-import Home from "./components/home";
-import Users from "./components/users";
-import Map from "./components/map";
-import Adduser from "./components/adduser";
+import Home from "./components/Home";
+import Users from "./components/Users";
+import Map from "./components/Map";
+import Adduser from "./components/Adduser";
 import {
   BrowserRouter as Router,
   Switch,
@@ -56,13 +56,16 @@ export default class MenuExampleColoredInverted extends Component {
             />
         </Menu>
         <Switch>
-          <Route path="/map">
+          <Route path="/Map">
             <Map />
           </Route>
-          <Route path="/user/add">
+          <Route path="/user/update/:id" component={Adduser}>
+            
+          </Route>
+          <Route path="/User/Add">
             <Adduser />
           </Route>
-          <Route path="/user">
+          <Route path="/User">
             <Users />
           </Route>
           <Route path="/">

@@ -24,6 +24,7 @@ export default class Adduser extends Component {
     }
     render() {
         const { nom, email, tel, type, mot_de_passe, redirect} = this.state
+        
         return (
             redirect ? ( <Redirect to="/user" />) :
             (<div align="center">
@@ -46,6 +47,7 @@ export default class Adduser extends Component {
                         value={email}
                         onChange={this.handleChange}
                         width={8}
+                        type='email'
                     />
                     <Form.Input
                         placeholder='tel'
@@ -53,6 +55,7 @@ export default class Adduser extends Component {
                         value={tel}
                         onChange={this.handleChange}
                         width={8}
+                        type='tel'
                     />
                     <Form.Input
                         placeholder='mot de passe'
@@ -60,6 +63,7 @@ export default class Adduser extends Component {
                         value={mot_de_passe}
                         onChange={this.handleChange}
                         width={8}
+                        type='password'
                         
                     />
                     <Form.Select placeholder='Select Type' name='type' value={type} options={typeOptions} width={8} onChange={this.handleChange} />

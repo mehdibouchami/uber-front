@@ -7,7 +7,7 @@ const typeOptions = [
     { key: 'chauffeur', value: 'chauffeur', text: 'Chauffer Taxi' }
 ];
 
-export default class Adduser extends Component {
+export default class Updateuser extends Component {
     state = { nom: '', email: '', tel: '', type: '', mot_de_passe: '', redirect: 0 }
 
     handleChange = (e, { name, value }) => this.setState({ [name]: value })

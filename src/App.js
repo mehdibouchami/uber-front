@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Users from "./components/Users";
 import Map from "./components/Map";
 import Adduser from "./components/Adduser";
+import Updateuser from "./components/Updateuser";
 import {
   BrowserRouter as Router,
   Switch,
@@ -59,7 +60,7 @@ export default class MenuExampleColoredInverted extends Component {
           <Route path="/Map">
             <Map />
           </Route>
-          <Route path="/user/update/:id" component={Adduser}>
+          <Route path="/user/update/:id" component={Updateuser}>
             
           </Route>
           <Route path="/User/Add">

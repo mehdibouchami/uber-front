@@ -24,7 +24,7 @@ export default class Adduser extends Component {
     }
     render() {
         const { nom, email, tel, type, mot_de_passe, redirect} = this.state
-        console.log(this.props.match.params.id);
+       
         return (
             redirect ? ( <Redirect to="/user" />) :
             (<div align="center">

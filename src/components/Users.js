@@ -6,23 +6,28 @@ import { Link } from "react-router-dom";
 export default class Users extends Component {
     state = {
         users: [],
-        open: false
+        open: false,
+        userDeletedId: 0
     }
     
-    show = () => this.setState({ open: true })
+    show = (id) => {this.setState({ open: true, userDeletedId: id })
+console.log(id)}
     handleConfirm = () => {
-      /*  axios.delete('http://localhost:5000/api/user'+this.state.user_id, { headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZTlhNzRjNmU1ZDFhMDA1NmFkNmMwNSIsInR5cGUiOiJjbGllbnQiLCJpYXQiOjE2MTAxMzk2MTIsImV4cCI6MTYxMDIyNjAxMn0.6fZFnM31iEGLM6L1RbVkxgrIHnaSqwjEN6VvUPfkaS0' } })
+      axios.delete('http://localhost:5000/api/user/'+this.state.userDeletedId, { headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZTlhNzRjNmU1ZDFhMDA1NmFkNmMwNSIsInR5cGUiOiJjbGllbnQiLCJpYXQiOjE2MTAxODU0MzAsImV4cCI6MTYxMDI3MTgzMH0.VCKdsj2MbvDQOEu6yqnmN8Q4vuNSYks-_p6DF3CuiO4' } })
         .then(res => {
-            const users = res.data;
-            this.setState({ users });
-        });*/
+            axios.get('http://localhost:5000/api/user', { headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZTlhNzRjNmU1ZDFhMDA1NmFkNmMwNSIsInR5cGUiOiJjbGllbnQiLCJpYXQiOjE2MTAxODU0MzAsImV4cCI6MTYxMDI3MTgzMH0.VCKdsj2MbvDQOEu6yqnmN8Q4vuNSYks-_p6DF3CuiO4' } })
+            .then(res => {
+                const users = res.data;
+                this.setState({ users });
+            })
+        });
       this.setState({ result: 'confirmed', open: false })
     }
     
     handleCancel = () => this.setState({ result: 'cancelled', open: false })
     componentDidMount() {
 
-        axios.get('http://localhost:5000/api/user', { headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZTlhNzRjNmU1ZDFhMDA1NmFkNmMwNSIsInR5cGUiOiJjbGllbnQiLCJpYXQiOjE2MTAxMzk2MTIsImV4cCI6MTYxMDIyNjAxMn0.6fZFnM31iEGLM6L1RbVkxgrIHnaSqwjEN6VvUPfkaS0' } })
+        axios.get('http://localhost:5000/api/user', { headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZTlhNzRjNmU1ZDFhMDA1NmFkNmMwNSIsInR5cGUiOiJjbGllbnQiLCJpYXQiOjE2MTAxODU0MzAsImV4cCI6MTYxMDI3MTgzMH0.VCKdsj2MbvDQOEu6yqnmN8Q4vuNSYks-_p6DF3CuiO4' } })
             .then(res => {
                 const users = res.data;
                 this.setState({ users });
@@ -50,7 +55,7 @@ export default class Users extends Component {
                                 <Card.Content extra>
                                     <div className='ui two buttons'>
                                         <Button basic color='green' as={Link} to={ "/user/update/"+user._id }>Update</Button>
-                                        <Button basic color='red' onClick={this.handleDelete}>Delete</Button>
+                                        <Button basic color='red' onClick={this.show.bind(this, user._id)}>Delete</Button>
                                         <Confirm
                                             open={this.state.open}
                                             onCancel={this.handleCancel}
